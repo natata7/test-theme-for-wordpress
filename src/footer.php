@@ -46,7 +46,9 @@
     <div class="row">
 
             <div class="copyright col-md-8">
-                <p>© 2020 Friendly All rights reserved</p>
+                <p>
+                    <?php echo get_theme_mod('footer_copyright'); ?>
+                </p>
             </div>
             <?php if ( is_active_sidebar( 'social-links' ) ) : ?>
  

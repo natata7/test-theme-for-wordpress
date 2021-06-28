@@ -1,5 +1,34 @@
 <?php
 
+function mytheme_customize_register( $wp_customize ) {
+  $wp_customize->add_panel( 'mytheme_theme_options', array(
+        'priority'       => 100,
+        'title'            => __( 'Theme Options', 'mytheme' ),
+        'description'      => __( 'Theme texts can be done here', 'mytheme' ),
+    ) 
+);
+  $wp_customize->add_section( 'copyright_section' , array(
+    'title'           => __( 'Copyright', 'mytheme' ),
+    'priority'        => 1,
+    'panel'           => 'mytheme_theme_options'
+) );
+  $wp_customize->add_setting( 'footer_copyright' , array(
+  'default'           => __('© 2020 Friendly All rights reserved', 'mytheme'),
+  'sanitize_callback' => 'sanitize_text_field',
+  'transport'         => 'refresh',
+) );
+$wp_customize->add_control( 'footer_copyright', 
+array(
+    'type'        => 'text',
+    'priority'    => 10,
+    'section'     => 'copyright_section',
+    'label'       => 'Copyright text',
+    'description' => 'Text put here will be outputted in the footer',
+) 
+);
+}
+add_action( 'customize_register', 'mytheme_customize_register' );
+
 function cc_mime_types($mimes = array()) {
  $mimes['svg'] = "image/svg+xml";
  $mimes['svgz'] = 'image/svg+xml';
