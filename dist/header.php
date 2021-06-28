@@ -8,7 +8,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="style.css">
 <?php wp_head(); ?>
 </head>
 
@@ -25,23 +24,24 @@
                 if ( has_custom_logo() ) {
                     echo '<img src="' . esc_url( $logo[0] ) . '" alt="' . get_bloginfo( 'name' ) . '">';
                 } else {
-                    echo '<h1>' . get_bloginfo('name') . '</h1>';
+                    echo '<img src="' . get_template_directory_uri() . '/images/logo.svg" alt="' . get_bloginfo( 'name' ) . '">';
                 }
 			?>
-                    <img class="logo" src="./images/logo.svg" alt="Logo">
                 </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbar">
-                <nav class="navbar-nav m-auto">
-                <?php wp_nav_menu( array( 'theme_location' => 'menu-main', 'menu_id' => 'menu-main' ) ); ?>
-                        <a class="nav-link" href="#">About</a>
-                        <a class="nav-link" href="#">Product</a>
-                        <a class="nav-link" href="#">Pricing</a>
-                        <a class="nav-link" href="#">Resources</a>
-                        <a class="nav-link" href="#">Jobs</a>
-                </nav>
+                <?php wp_nav_menu( array(
+    'theme_location'  => 'primary',
+    'depth'           => 2, // 1 = no dropdowns, 2 = with dropdowns.
+    'container'       => 'div',
+    'container_class' => 'collapse navbar-collapse',
+    'container_id'    => 'bs-example-navbar-collapse-1',
+    'menu_class'      => 'navbar-nav m-auto',
+    'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+    'walker'          => new WP_Bootstrap_Navwalker(),
+) ); ?>
                 <div class="btn-wrap">
                     <div class="btn btn-login">Login</div>
                     <div class="btn btn-signup">Sign up</div>

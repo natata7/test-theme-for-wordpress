@@ -1,10 +1,13 @@
-$(window).on('scroll', function () {
+jQuery(document).ready(function($){
+    $(window).on('scroll', function () {
     var scroll = $(window).scrollTop();
     if (scroll < 500) {
         $("#header-sticky").removeClass("sticky-menu");
     } else {
         $("#header-sticky").addClass("sticky-menu");
     }
+});
+
 });
 // $(document).ready(function(){
 //     $('.hero_block').height($(window).height());
